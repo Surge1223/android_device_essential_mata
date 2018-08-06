@@ -210,7 +210,7 @@
     <hal format="hidl">
         <name>android.hardware.radio</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.0</version>
         <interface>
             <name>IRadio</name>
             <instance>slot1</instance>
@@ -286,7 +286,7 @@
     <hal format="hidl">
         <name>android.hardware.wifi</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.0</version>
         <interface>
             <name>IWifi</name>
             <instance>default</instance>
@@ -299,15 +299,6 @@
         <interface>
             <name>ISupplicant</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>com.qualcomm.qti.imscmservice</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IImsCmService</name>
-            <instance>qti.ims.connectionmanagerservice</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -484,4 +475,3 @@
         <version>27.0</version>
     </sepolicy>
 </manifest>
-

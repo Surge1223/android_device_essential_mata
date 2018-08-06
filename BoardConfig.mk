@@ -86,6 +86,8 @@ ANDROID_NO_TEST_CHECK := true
 BOARD_ROOT_EXTRA_FOLDERS := persist firmware metadata
 
 # sepolicy
+BOARD_SEPOLICY_VERS := 27.0
+POLICYVERS := 30
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy/vendor
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR := device/essential/mata/sepolicy/public
