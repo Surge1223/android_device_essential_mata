@@ -24,6 +24,15 @@
     <signer signature="@GOOGLE" >
       <seinfo value="google" />
     </signer>
+    <signer signature="@TANGO" >
+      <seinfo value="tango" />
+    </signer>
+    <signer signature="@TANGO_DEV" >
+      <seinfo value="tango" />
+    </signer>
+    <signer signature="@EASEL" >
+      <seinfo value="easel" />
+    </signer>
     <signer signature="@ARCORE" >
       <seinfo value="arcore" />
     </signer>

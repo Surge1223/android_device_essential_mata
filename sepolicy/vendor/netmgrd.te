@@ -4,7 +4,7 @@ type netmgrd_exec, exec_type, vendor_file_type, file_type;
 net_domain(netmgrd)
 init_daemon_domain(netmgrd)
 
-set_prop(netmgrd, net_radio_prop)
+set_prop(netmgrd, vendor_net_radio_prop)
 set_prop(netmgrd, net_rmnet_prop)
 
 # communicate with netd
@@ -35,6 +35,7 @@ wakelock_use(netmgrd)
 
 #Allow netutils usage
 domain_auto_trans(netmgrd, netutils_wrapper_exec, netutils_wrapper)
+allow netmgrd netutils_wrapper:process sigkill;
 
 #Allow diag logging
 allow netmgrd sysfs_timestamp_switch:file { read open };
@@ -53,7 +54,6 @@ allow netmgrd netmgr_data_file:file create_file_perms;
 allow netmgrd system_file:file execute_no_trans;
 
 allow netmgrd self:capability { net_admin net_raw setgid setpcap setuid };
-allow netmgrd diag_device:chr_file r_file_perms;
 
 allow netmgrd vendor_toolbox_exec:file rx_file_perms;
 

@@ -17,6 +17,8 @@ allow ims self:capability net_bind_service;
 
 allow ims ion_device:chr_file r_file_perms;
 
+unix_socket_connect(ims, cnd, cnd)
+
 allow ims self:socket create_socket_perms;
 allow ims ims_socket:sock_file write;
 allow ims self:netlink_generic_socket create_socket_perms_no_ioctl;
@@ -29,6 +31,8 @@ r_dir_file(ims, sysfs_msm_subsys)
 r_dir_file(ims, sysfs_diag)
 
 hwbinder_use(ims)
+allow ims hal_cne_hwservice:hwservice_manager find;
+binder_call(ims, cnd)
 
 userdebug_or_eng(`
   allow ims diag_device:chr_file rw_file_perms;
