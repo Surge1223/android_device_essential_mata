@@ -15,22 +15,28 @@
 #
 
 # Inherit from the common Open Source product configuration
+
+# Get the full APNs
+
+# Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
 
 $(call inherit-product, device/essential/mata/device.mk)
 $(call inherit-product-if-exists, vendor/essential/mata/mata-vendor.mk)
 
 PRODUCT_PACKAGES += \
     Dialer \
-    Launcher3 \
+    Launcher3QuickStep \
+    WallpaperPicker \
+    netutils-wrapper-1.0 \
+    vndk_package \
     WallpaperPicker
+
 
 PRODUCT_COPY_FILES += \
     device/essential/mata/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml
 
-PRODUCT_FULL_TREBLE := true
 
 PRODUCT_MANUFACTURER := Essential Products
 PRODUCT_BRAND := essential

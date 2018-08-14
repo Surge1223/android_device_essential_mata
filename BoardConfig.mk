@@ -17,7 +17,9 @@
 TARGET_BOOTLOADER_BOARD_NAME := mata
 BOARD_BOOTIMAGE_PARTITION_SIZE := 41943040
 TARGET_BOARD_PLATFORM := msm8998
+TARGET_USES_AOSP := true
 
+TARGET_BOARD_AUTO := true
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -25,7 +27,7 @@ TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a73
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a73
@@ -36,7 +38,6 @@ BOARD_KERNEL_CMDLINE += service_locator.enable=1 swiotlb=2048 androidboot.config
 BOARD_KERNEL_CMDLINE += buildvariant=$(TARGET_BUILD_VARIANT) enforcing=0 androidboot.selinux=permissive
 
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := clang-stable
 TARGET_KERNEL_SOURCE := kernel/essential/mata
 TARGET_KERNEL_CONFIG := custom_defconfig
 TARGET_KERNEL_ARCH := arm64
@@ -86,13 +87,10 @@ ANDROID_NO_TEST_CHECK := true
 BOARD_ROOT_EXTRA_FOLDERS := persist firmware metadata
 
 # sepolicy
-BOARD_SEPOLICY_VERS := 27.0
-POLICYVERS := 30
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy/vendor
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR := device/essential/mata/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR := device/essential/mata/sepolicy/private
-BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy/verizon
 
 TARGET_ANDROID_FILESYSTEM_CONFIG_H := device/essential/mata/android_filesystem_config.h
 
@@ -183,3 +181,5 @@ TARGET_USES_MKE2FS := true
 BOARD_VNDK_VERSION := current
 
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+
+USE_DEVICE_SPECIFIC_IPACFG_MGR := true

@@ -43,22 +43,28 @@ LOCAL_PATH := device/essential/mata
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.control_privapp_permissions=disable
 
-SRC_MEDIA_HAL_DIR := hardware/qcom/media/msm8998
-SRC_DISPLAY_HAL_DIR := hardware/qcom/display/msm8998
+audio-hal := hardware/qcom/audio
+bt-hal := hardware/qcom/bt/msm8998
+display-hal := hardware/qcom/display/msm8998
+QCOM_MEDIA_ROOT := hardware/qcom/media/msm8998
+OMX_VIDEO_PATH := mm-video-v4l2
+media-hal := hardware/qcom/media/msm8998
+
+SRC_DISPLAY_HAL_DIR := $(display-hal)
+SRC_MEDIA_HAL_DIR := $(QCOM_MEDIA_ROOT)
 SRC_CAMERA_HAL_DIR := hardware/qcom/camera/msm8998
+
+include device/essential/mata/utils.mk
 
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Get kernel-headers
-$(call inherit-product, hardware/qcom/msm8998/msm8998.mk)
-
-$(call inherit-product, device/essential/mata/utils.mk)
+include hardware/qcom/msm8998/msm8998.mk
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_SHIPPING_API_LEVEL := 26
-PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.recovery.mata.rc:root/init.recovery.mata.rc \
@@ -72,16 +78,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.crda.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.crda.sh \
     $(LOCAL_PATH)/preloads_copy.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/preloads_copy.sh \
     $(LOCAL_PATH)/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
-    $(LOCAL_PATH)//vold.fstab:system/etc/vold.fstab
+    $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab
 
 MSM_VIDC_TARGET_LIST := msm8998 # Get the color format from kernel headers
 MASTER_SIDE_CP_TARGET_LIST := msm8998 # ION specific settings
-
-# Update engine
-PRODUCT_PACKAGES += \
-    brillo_update_payload \
-    update_engine_sideload \
-    update_engine_client
 
 # A/B support
 PRODUCT_PACKAGES += \
@@ -93,14 +93,39 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bootctrl.msm8998
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cp_system_other_odex=1
+# A/B OTA dexopt update_engine hookup
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
+AB_OTA_POSTINSTALL_CONFIG += \
+   RUN_POSTINSTALL_system=true \
+   POSTINSTALL_PATH_system=system/bin/preloads_copy.sh \
+   FILESYSTEM_TYPE_system=ext4 \
+   POSTINSTALL_OPTIONAL_system=true
+
+
+# Enable update engine sideloading by including the static version of the
+# boot_control HAL and its dependencies.
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.msm8998 \
+    libgptutils \
+    libz \
+    libcutils
+
+# The following modules are included in debuggable builds only.
+PRODUCT_PACKAGES += \
+    update_engine_client
+
 
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
-    system
+    system \
+    vbmeta
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -176,7 +201,7 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-service \
     bootctrl.msm8998 \
 
-PRODUCT_PACKAGES_DEBUG += \
+PRODUCT_PACKAGES += \
     bootctl
 
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
@@ -308,14 +333,13 @@ PRODUCT_COPY_FILES += \
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
-    libOmxAacEnc \
-    libOmxAmrEnc \
+    libstagefrighthw \
     libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
+    libmm-omxcore \
     libOmxVdec \
-    libOmxVenc \
-    libstagefrighthw
+    libOmxVdecHevc \
+    libOmxVenc
+
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -362,10 +386,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     device/essential/mata/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
-
-# QMI
-PRODUCT_PACKAGES += \
-    libjson
 
 # Radio
 PRODUCT_PACKAGES += \
@@ -423,7 +443,8 @@ PRODUCT_PACKAGES += \
 # Update this list with what each blob is actually for
 # libicuuc: vendor.qti.hardware.qteeconnector@1.0-impl
 PRODUCT_PACKAGES += \
-    libicuuc.vendor
+    libicuuc.vendor \
+    libjson
 
 # Weaver
 PRODUCT_PACKAGES += \
@@ -494,10 +515,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.perfd.enable=true
 
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := 560dpi
-PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
-
 PRODUCT_PROPERTY_OVERRIDES += audio.adm.buffering.ms=3
 PRODUCT_PROPERTY_OVERRIDES += vendor.audio.adm.buffering.ms=3
 PRODUCT_PROPERTY_OVERRIDES += audio_hal.period_multiplier=2
@@ -518,3 +535,141 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.layer_cache_size=48 \
     ro.hwui.path_cache_size=32
 
+
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
+# Graphics
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.mapper@2.0-impl
+
+# Memtrack
+PRODUCT_PACKAGES += \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service
+
+# Configstore
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-service
+
+# RIL
+PRODUCT_PACKAGES += \
+    android.hardware.radio@1.0 \
+    android.hardware.radio@1.1 \
+    android.hardware.radio.deprecated@1.0 \
+    android.hardware.radio@1.0-service
+
+# Audio
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-service \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.soundtrigger@2.0-impl
+
+# Camera
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-service
+
+# Netutils
+PRODUCT_PACKAGES += \
+    netutils-wrapper-1.0
+
+# Wi-Fi
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0 \
+    android.hardware.wifi@1.1 \
+    android.hardware.wifi@1.0-service
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl-qti \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service
+
+# NFC packages
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl \
+    android.hardware.nfc@1.0-service
+
+# GNSS
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl-qti \
+    android.hardware.gnss@1.0-service-qti
+
+# Light
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-service.sony
+
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1 \
+    android.hardware.biometrics.fingerprint@2.1-service.sony
+
+ifneq ($(TARGET_LEGACY_KEYMASTER),true)
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl-qti \
+    android.hardware.keymaster@3.0-service-qti
+
+# Gatekeeper
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl-qti \
+    android.hardware.gatekeeper@1.0-service-qti
+else
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
+
+# Gatekeeper
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
+endif
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service
+
+# Usb HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0 \
+    android.hardware.usb@1.0-service
+
+# Thermal HAL
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+    android.hardware.thermal@1.0-service
+
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
+    android.hardware.power@1.0-service
+
+ifeq ($(AB_OTA_UPDATER),true)
+# Boot control
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+endif
+
+include $(display-hal)/Android.mk
+include $(call all-makefiles-under,$(audio-hal))
+include $(call all-makefiles-under,$(media-hal))
