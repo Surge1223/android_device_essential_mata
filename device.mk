@@ -117,15 +117,15 @@ PRODUCT_STATIC_BOOT_CONTROL_HAL := \
 
 # The following modules are included in debuggable builds only.
 PRODUCT_PACKAGES += \
-    update_engine_client
+    update_engine_client \
+    update_engine_sideload
 
 
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
-    system \
-    vbmeta
+    system
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -669,6 +669,8 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service
 endif
+
+PRODUCT_PACKAGES += mata-vndk
 
 include $(display-hal)/Android.mk
 include $(call all-makefiles-under,$(audio-hal))
