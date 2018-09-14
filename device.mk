@@ -252,6 +252,11 @@ PRODUCT_PACKAGES += \
     libvulkan \
     memtrack.msm8998
 
+#TWRP
+PRODUCT_COPY_FILES += \
+    device/essential/mata/twrp/twrp.fstab:recovery/root/etc/twrp.fstab
+
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \

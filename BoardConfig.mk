@@ -187,3 +187,13 @@ BOARD_VNDK_VERSION := current
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 #USE_DEVICE_SPECIFIC_IPACFG_MGR := true
+PRODUCT_VENDOR_MOVE_ENABLED := true
+
+TARGET_USES_LOGD := true
+#TWRP_INCLUDE_LOGCAT := true
+TW_INCLUDE_CRYPTO := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0-service
+TW_RECOVERY_ADDITIONAL_RELINK_FILES := out/target/product/mata/system/lib64/android.hardware.boot@1.0.so out/target/product/mata/vendor/bin/hw/android.hardware.boot@1.0-service
+TW_NO_SCREEN_BLANK := true
+#TWRP_EVENT_LOGGING := true
