@@ -98,7 +98,7 @@ BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy/vendor
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR := device/essential/mata/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR := device/essential/mata/sepolicy/private
 
-TARGET_ANDROID_FILESYSTEM_CONFIG_H := device/essential/mata/android_filesystem_config.h
+TARGET_FS_CONFIG_GEN := device/essential/mata/config.fs
 
 QCOM_BOARD_PLATFORMS += msm8998
 BOARD_HAVE_BLUETOOTH_QCOM := true
