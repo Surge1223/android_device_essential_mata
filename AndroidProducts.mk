@@ -16,4 +16,4 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_mata.mk \
-    vendor/nexus/products/mata.mk
+    $(LOCAL_DIR)/du.mk
