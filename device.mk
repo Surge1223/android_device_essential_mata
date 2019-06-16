@@ -90,9 +90,6 @@ PRODUCT_PACKAGES += \
     update_engine \
     update_verifier
 
-PRODUCT_PACKAGES += \
-    bootctrl.msm8998
-
 # A/B OTA dexopt update_engine hookup
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -111,15 +108,14 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # boot_control HAL and its dependencies.
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     bootctrl.msm8998 \
-    libgptutils \
     libz \
-    libcutils
+    libcutils \
+    libgptutils \
+    liblog
 
 # The following modules are included in debuggable builds only.
 PRODUCT_PACKAGES += \
     update_engine_client \
-    update_engine_sideload
-
 
 AB_OTA_UPDATER := true
 
