@@ -36,6 +36,7 @@ BOARD_KERNEL_CMDLINE += androidboot.hardware=mata user_debug=31 msm_rtb.filter=0
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1
 BOARD_KERNEL_CMDLINE += service_locator.enable=1 swiotlb=2048 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
 BOARD_KERNEL_CMDLINE += buildvariant=$(TARGET_BUILD_VARIANT) enforcing=0 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += veritykeyid=id:84678c054b9c09576bf1ecb156ea6e5e65f52593
 
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_CLANG_COMPILE := true

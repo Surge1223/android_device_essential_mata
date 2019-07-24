@@ -1,0 +1,9 @@
+#essential sidecar shit service
+type hal_sidecar_essential_default, domain;
+type hal_sidecar_essential_default_exec, exec_type, vendor_file_type, file_type;
+
+# Started by init
+init_daemon_domain(hal_sidecar_essential_default)
+net_domain(hal_sidecar_essential_default)
+
+hwbinder_use(hal_sidecar_essential_default)

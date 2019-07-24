@@ -1,0 +1,18 @@
+# Policies for hbtp (host based touch processing)
+type hbtp, domain;
+type hbtp_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hbtp)
+
+allow hbtp hbtp : capability { setgid setuid sys_nice };
+allow hbtp hbtp : capability2 { block_suspend };
+allow hbtp hbtp : dir { ioctl read getattr lock search open };
+allow hbtp hbtp : fd { use };
+allow hbtp hbtp : fifo_file { ioctl read write getattr lock append map open };
+allow hbtp hbtp : file { ioctl read write getattr lock append map open };
+allow hbtp hbtp : lnk_file { ioctl read getattr lock map open };
+allow hbtp hbtp : process { fork sigchld sigkill sigstop signull signal getsched setsched getsession getpgid setpgid getcap setcap getattr setrlimit };
+allow hbtp hbtp : unix_dgram_socket { ioctl read write create getattr setattr lock append bind connect getopt setopt shutdown sendto };
+allow hbtp hbtp : unix_stream_socket { ioctl read write create getattr setattr lock append bind connect listen accept getopt setopt shutdown connectto };
+allow hbtp hbtp_device : chr_file { ioctl read write getattr lock append map open };
+allow hbtp hbtp_exec : file { read getattr map open };

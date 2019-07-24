@@ -1,0 +1,4 @@
+type btaddr_extract, domain;
+type btaddr_extract_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(btaddr_extract)

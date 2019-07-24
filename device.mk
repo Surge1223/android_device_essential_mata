@@ -68,9 +68,11 @@ PRODUCT_SHIPPING_API_LEVEL := 26
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.recovery.mata.rc:root/init.recovery.mata.rc \
+    $(LOCAL_PATH)/init.recovery.mata.rc:recovery/root/init.recovery.mata.rc \
     $(LOCAL_PATH)/init.mata.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mata.rc \
     $(LOCAL_PATH)/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mata.usb.rc \
     $(LOCAL_PATH)/ueventd.mata.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
+    $(LOCAL_PATH)/ueventd.mata.rc:recovery/root/ueventd.rc \
     $(LOCAL_PATH)/init.qcom.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.post_boot.sh \
     $(LOCAL_PATH)/init.qcom.early_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.early_boot.sh \
     $(LOCAL_PATH)/provision.sh:$(TARGET_COPY_OUT_VENDOR)/bin/provision.sh \
@@ -78,7 +80,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.crda.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.crda.sh \
     $(LOCAL_PATH)/preloads_copy.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/preloads_copy.sh \
     $(LOCAL_PATH)/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
-    $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab
+    $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab \
+    device/essential/mata/fstab.mata:root/fstab.mata \
+    device/essential/mata/fstab.mata:recovery/root/fstab.mata
 
 MSM_VIDC_TARGET_LIST := msm8998 # Get the color format from kernel headers
 MASTER_SIDE_CP_TARGET_LIST := msm8998 # ION specific settings
@@ -373,7 +377,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
+    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
+    device/essential/mata/privapp-permissions-aosp_mata.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-aosp_mata.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -657,7 +662,10 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service
+    android.hardware.power@1.0-service \
+    minunz \
+    minzip
+
 
 ifeq ($(AB_OTA_UPDATER),true)
 # Boot control

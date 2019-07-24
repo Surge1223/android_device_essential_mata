@@ -18,6 +18,8 @@ type sysfs_timestamp_switch, sysfs_type, fs_type;
 type sysfs_touch, sysfs_type, fs_type;
 type sysfs_usb_c, sysfs_type, fs_type;
 type sysfs_usb_device, sysfs_type, fs_type;
+type sysfs_usb_supply, sysfs_type, fs_type;
+type sysfs_battery_supply, sysfs_type, fs_type;
 # b/70518189 vDSO experiments
 type sysfs_vdso, fs_type, sysfs_type;
 
@@ -79,6 +81,9 @@ type ese_vendor_data_file, file_type, data_file_type;
 type sensors_vendor_data_file, file_type, data_file_type;
 type audio_vendor_data_file, file_type, data_file_type;
 type mediadrm_vendor_data_file, file_type, data_file_type;
+type hbtp_vendor_data_file, file_type, data_file_type;
+type time_vendor_data_file, file_type, data_file_type;
+type tombstone_vendor_data_file, file_type, data_file_type;
 
 #data sysfs files
 type sysfs_data, fs_type, sysfs_type;
@@ -99,3 +104,7 @@ typeattribute sysfs_batteryinfo mlstrustedobject;
 type proc_irq, fs_type, proc_type;
 type sysfs_irq, sysfs_type, fs_type;
 type irqbalance_socket, file_type;
+
+type sidecar_file, file_type;
+type adsprpcd_file, file_type;
+type persist_bluetooth_file, file_type;
