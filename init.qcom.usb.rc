@@ -92,3 +92,4 @@ on boot
     setprop sys.usb.rmnet.func.name "gsi"
     setprop sys.usb.configfs 1
     setprop sys.usb.rps_mask 0
+    write /sys/module/usbcore/parameters/autosuspend 3

@@ -47,7 +47,7 @@ hw_revision=`getprop ro.boot.revision`
 if [ "$hw_revision" == "1.7" ] || [ "$hw_revision" == "1.9" ]; then
     setprop ro.hardware.nfc_nci cxd22xx
 else
-    setprop ro.hardware.nfc_nci mata
+    setprop ro.hardware.nfc_nci msm8998
 fi
 
 # If grip manual is set to 0 (user forced to disable grip), disable it
