@@ -1,4 +1,4 @@
-# Copyright (C) 2018 The Dirty Unicorns Project
+# Copyright (C) 2019 The Dirty Unicorns Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ PRODUCT_MODEL := PH-1
 # Device Fingerprint
 PRODUCT_BUILD_PROP_OVERRIDES += \
         PRODUCT_NAME=mata \
-        BUILD_FINGERPRINT=essential/mata/mata:9/PQ1A.190105.112/550:user/release-keys \
-        PRIVATE_BUILD_DESC="mata-user 9 PQ1A.190105.112 550 release-keys"
+        BUILD_FINGERPRINT=essential/mata/mata:10/QP1A.190711.148/446:user/test-keys \
+        PRIVATE_BUILD_DESC="mata-user 10 QP1A.190711.148 446 release-keys"
 
 $(call inherit-product-if-exists, vendor/pixelgapps/pixel-gapps.mk)

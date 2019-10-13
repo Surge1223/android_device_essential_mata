@@ -1,0 +1,17 @@
+[
+ {
+   "repository":  "Surge1223/android_device_essential_mata",
+   "target_path": "device/essential/mata",
+   "branch":      "q10x"
+ },
+ {
+   "repository":  "Surge1223/android_kernel_essential_mata",
+   "target_path": "kernel/essential/mata",
+   "branch":      "q10x"
+ },
+ {
+   "repository":  "Surge1223/proprietary_vendor_essentia_mata",
+   "target_path": "vendor/essential/mata",
+   "branch":      "q10x"
+ }
+]
