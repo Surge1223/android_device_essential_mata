@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2017, The Android Open Source Project
+** Copyright 2018, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
-** You may obtain a copy of the License at
+** You my obtain a copy of the License at
 **
 **     http://www.apache.org/licenses/LICENSE-2.0
 **
@@ -17,7 +17,10 @@
 */
 -->
 
-<resources>
-    <!-- Height of the status bar -->
-    <dimen name="status_bar_height">28dp</dimen>
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds. -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Control whether status bar should distinguish HSPA data icon from UMTS
+    data icon on devices -->
+    <bool name="config_hspa_data_distinguishable">false</bool>
 </resources>

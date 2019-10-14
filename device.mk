@@ -383,7 +383,7 @@ PRODUCT_PACKAGES += \
     libxml2
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+    device/essential/mata/etc/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 # Radio
 PRODUCT_PACKAGES += \

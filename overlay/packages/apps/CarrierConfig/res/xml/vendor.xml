@@ -50,7 +50,8 @@
         <int name="wfc_spn_format_idx_int" value="1" />
     </carrier_config>
     <carrier_config mcc="262" mnc="02">
-        <boolean name="carrier_volte_available_bool" value="false" />
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="262" mnc="07">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -65,6 +66,13 @@
     </carrier_config>
     <carrier_config mcc="302" mnc="220" gid1="5455">
         <int name="maxMessageSize" value="3670016" />
+        <int name="vvm_port_number_int" value="5499" />
+        <string name="vvm_destination_number_string">7723</string>
+        <string name="vvm_type_string">vvm_type_omtp</string>
+        <boolean name="vvm_cellular_data_required_bool" value="true" />
+        <boolean name="vvm_prefetch_bool" value="true" />
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="302" mnc="221" gid1="5455">
         <int name="maxMessageSize" value="3670016" />
@@ -90,8 +98,13 @@
         <int name="wfc_spn_format_idx_int" value="1" />
         <int name="network_notification_delay_int" value="30000" />
     </carrier_config>
+    <carrier_config mcc="310" mnc="150">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
     <carrier_config mcc="310" mnc="260">
         <boolean name="carrier_vt_available_bool" value="false" />
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="310" mnc="260" gid1="deff">
         <boolean name="require_entitlement_checks_bool" value="false" />
@@ -328,7 +341,7 @@
     </carrier_config>
     <carrier_config mcc="505" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="carrier_vt_available_bool" value="false" />
-        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <boolean name="carrier_vt_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
 </carrier_config_list>
