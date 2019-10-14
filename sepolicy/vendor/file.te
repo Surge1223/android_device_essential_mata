@@ -39,7 +39,7 @@ type debugfs_tzdbg, debugfs_type, fs_type;
 
 # /proc
 type proc_wifi_dbg, fs_type, proc_type;
-
+type netd_socket, file_type;
 type qmuxd_socket, file_type;
 type netmgrd_socket, file_type;
 type thermal_socket, file_type;
