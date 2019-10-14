@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 560dpi
 PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
@@ -35,7 +34,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true
-
 
 LOCAL_PATH := device/essential/mata
 
@@ -67,17 +65,17 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_SHIPPING_API_LEVEL := 26
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.recovery.mata.rc:root/init.recovery.mata.rc \
-    $(LOCAL_PATH)/init.recovery.mata.rc:recovery/root/init.recovery.mata.rc \
-    $(LOCAL_PATH)/init.mata.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mata.rc \
-    $(LOCAL_PATH)/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mata.usb.rc \
-    $(LOCAL_PATH)/ueventd.mata.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
-    $(LOCAL_PATH)/ueventd.mata.rc:recovery/root/ueventd.rc \
-    $(LOCAL_PATH)/init.qcom.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/init.qcom.early_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.early_boot.sh \
-    $(LOCAL_PATH)/provision.sh:$(TARGET_COPY_OUT_VENDOR)/bin/provision.sh \
-    $(LOCAL_PATH)/hbtp_cmd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hbtp_cmd.sh \
-    $(LOCAL_PATH)/init.crda.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.crda.sh \
+    $(LOCAL_PATH)/rootdir/init.recovery.mata.rc:root/init.recovery.mata.rc \
+    $(LOCAL_PATH)/rootdir/init.recovery.mata.rc:recovery/root/init.recovery.mata.rc \
+    $(LOCAL_PATH)/rootdir/init.mata.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mata.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mata.usb.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.mata.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.mata.rc:recovery/root/ueventd.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.post_boot.sh \
+    $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.early_boot.sh \
+    $(LOCAL_PATH)/rootdir/provision.sh:$(TARGET_COPY_OUT_VENDOR)/bin/provision.sh \
+    $(LOCAL_PATH)/rootdir/hbtp_cmd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hbtp_cmd.sh \
+    $(LOCAL_PATH)/rootdir/init.crda.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.crda.sh \
     $(LOCAL_PATH)/preloads_copy.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/preloads_copy.sh \
     $(LOCAL_PATH)/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
     $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab \
@@ -309,9 +307,9 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    device/essential/mata/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
-    device/essential/mata/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-    device/essential/mata/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
+    device/essential/mata/etc/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    device/essential/mata/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    device/essential/mata/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
@@ -327,7 +325,7 @@ PRODUCT_PACKAGES += \
     Tag
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/nfc/libnfc-brcm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-brcm.conf \
+    device/essential/mata/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
     device/essential/mata/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
 
 # OMX
@@ -426,7 +424,7 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.1-service.mata
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+    device/essential/mata/etc/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
 # Touchscreen
 PRODUCT_PACKAGES += \
@@ -453,10 +451,10 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    device/essential/mata/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    device/essential/mata/wifi_concurrency_cfg.txt:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_concurrency_cfg.txt \
-    device/essential/mata/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-    device/essential/mata/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+    device/essential/mata/etc/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    device/essential/mata/wifi/wifi_concurrency_cfg.txt:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_concurrency_cfg.txt \
+    device/essential/mata/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    device/essential/mata/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
@@ -471,11 +469,11 @@ PRODUCT_PACKAGES += \
 
 # Provide meaningful APN configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/apns-full-conf.xml:system/etc/apns-conf.xml
+    $(LOCAL_PATH)/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # GPS configuration file
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
+    $(LOCAL_PATH)/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
 
 # Subsystem silent restart
 PRODUCT_PROPERTY_OVERRIDES += \
