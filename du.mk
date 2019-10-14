@@ -45,4 +45,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
         BUILD_FINGERPRINT=essential/mata/mata:10/QP1A.190711.148/446:user/test-keys \
         PRIVATE_BUILD_DESC="mata-user 10 QP1A.190711.148 446 release-keys"
 
+$(call inherit-product-if-exists, vendor/essential/mata/mata-vendor.mk)
 $(call inherit-product-if-exists, vendor/pixelgapps/pixel-gapps.mk)
