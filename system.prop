@@ -1,4 +1,8 @@
-k# system.prop for cobalt
+#
+# from device/essential/mata/system.prop
+#
+#
+# system.prop for cobalt
 #
 
 #rild.libpath=/system/lib/libreference-ril.so
@@ -138,7 +142,7 @@ ro.vendor.sensors.mot_detect=true
 ro.vendor.sensors.dpc=true
 #MultiShake sensor
 ro.vendor.sensors.multishake=true
-
+ro.vendor.sensors.wu=false
 
 #Disable face beautification
 persist.ts.rtmakeup=false
@@ -156,11 +160,6 @@ vendor.display.enable_default_color_mode=1
 
 persist.radio.videopause.mode=1
 persist.data.iwlan.enable=true
-
-# Default audio files
-ro.config.ringtone=Sikkim.ogg
-ro.config.notification_sound=Sherwood.ogg
-ro.config.alarm_alert=Gallatin.ogg
 
 #Expose aux camera for below packages
 persist.camera.expose.aux=1
@@ -186,18 +185,12 @@ persist.vendor.radio.all_bc_msg=all
 
 ro.gpu.available_frequencies="710000000 670000000 596000000 515000000 414000000 342000000 257000000"
 
-audio.offload.min.duration.secs=3
+audio.offload.min.duration.secs=0
 vendor.audio.mqa.enable=true
+# end of device/essential/mata/system.prop
 
 #
 # ADDITIONAL_BUILD_PROPERTIES
 #
 ro.treble.enabled=true
-persist.sys.dalvik.vm.lib.2=libart.so
-dalvik.vm.isa.arm64.variant=cortex-a73
-dalvik.vm.isa.arm64.features=default
-dalvik.vm.isa.arm.variant=cortex-a73
-dalvik.vm.isa.arm.features=default
 net.bt.name=Android
-dalvik.vm.stack-trace-dir=/data/anr
-persist.sys.disable_rescue=true
