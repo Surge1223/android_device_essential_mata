@@ -76,7 +76,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/provision.sh:$(TARGET_COPY_OUT_VENDOR)/bin/provision.sh \
     $(LOCAL_PATH)/rootdir/hbtp_cmd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hbtp_cmd.sh \
     $(LOCAL_PATH)/rootdir/init.crda.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.crda.sh \
-    $(LOCAL_PATH)/preloads_copy.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/preloads_copy.sh \
     $(LOCAL_PATH)/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
     $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab \
     device/essential/mata/fstab.mata:root/fstab.mata \
@@ -671,8 +670,6 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service
 endif
-
-PRODUCT_PACKAGES += mata-vndk
 
 include $(display-hal)/Android.mk
 include $(call all-makefiles-under,$(audio-hal))
