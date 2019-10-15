@@ -137,7 +137,7 @@ on boot
     start rmt_storage
     start rfs_access
 
-    insmod /vendor/lib/modules/qca_cld3_wlan.ko
+    #insmod /vendor/lib/modules/qca_cld3_wlan.ko
     chown system shell /sys/class/sidecar/power_control
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
