@@ -39,7 +39,7 @@ LOCAL_PATH := device/essential/mata
 
 # Enforce privapp-permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.control_privapp_permissions=disable
+    ro.control_privapp_permissions=enforce
 
 audio-hal := hardware/qcom/audio
 bt-hal := hardware/qcom/bt/msm8998
@@ -63,6 +63,32 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_SHIPPING_API_LEVEL := 26
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.cne.feature=1 \
+    persist.vendor.data.iwlan.enable=true \
+    persist.radio.RATE_ADAPT_ENABLE=1 \
+    persist.radio.ROTATION_ENABLE=1 \
+    persist.radio.VT_ENABLE=1 \
+    persist.radio.VT_HYBRID_ENABLE=1 \
+    persist.vendor.radio.apm_sim_not_pwdn=1 \
+    persist.vendor.radio.custom_ecc=1 \
+    persist.vendor.radio.data_ltd_sys_ind=1 \
+    persist.radio.videopause.mode=1 \
+    persist.vendor.radio.sib16_support=1 \
+    persist.vendor.radio.data_con_rprt=true \
+    persist.vendor.radio.relay_oprt_change=1 \
+    persist.vendor.radio.no_wait_for_card=1 \
+    persist.vendor.radio.sap_silent_pin=1 \
+    persist.vendor.radio.multisim_switch_support=false \
+    persist.rcs.supported=1 \
+    vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so \
+    ro.hardware.keystore_desede=true \
+    ro.zram.mark_idle_delay_mins=60 \
+    ro.zram.first_wb_delay_mins=180 \
+    ro.zram.periodic_wb_delay_hours=24 \
+
+ENABLE_VENDOR_RIL_SERVICE := true
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.recovery.mata.rc:root/init.recovery.mata.rc \
@@ -103,7 +129,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
    POSTINSTALL_PATH_system=system/bin/preloads_copy.sh \
    FILESYSTEM_TYPE_system=ext4 \
    POSTINSTALL_OPTIONAL_system=true
-
 
 # Enable update engine sideloading by including the static version of the
 # boot_control HAL and its dependencies.
@@ -470,10 +495,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/apns-conf.xml:system/etc/apns-conf.xml
 
-# GPS configuration file
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
-
 # Subsystem silent restart
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.ssr.restart_level=modem,slpi,adsp
@@ -489,7 +510,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.vndk.version=27.1.0 \
 
 # Include vndk/vndk-sp/ll-ndk modules
-PRODUCT_PACKAGES += vndk_package
+PRODUCT_PACKAGES += \
+    vndk_package \
+    vndk-sp
 
 PRODUCT_ENFORCE_RRO_TARGETS := framework-res
 
@@ -659,9 +682,7 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service \
-    minunz \
-    minzip
+    android.hardware.power@1.0-service
 
 
 ifeq ($(AB_OTA_UPDATER),true)
