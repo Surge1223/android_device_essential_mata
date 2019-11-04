@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-#ifndef ANDROID_HARDWARE_POWER_V1_1_POWER_H
-#define ANDROID_HARDWARE_POWER_V1_1_POWER_H
+#ifndef ANDROID_HARDWARE_POWER_V1_2_POWER_H
+#define ANDROID_HARDWARE_POWER_V1_2_POWER_H
 
-#include <android/hardware/power/1.1/IPower.h>
+#include <android/hardware/power/1.2/IPower.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 #include <hardware/power.h>
@@ -27,12 +27,12 @@
 namespace android {
 namespace hardware {
 namespace power {
-namespace V1_1 {
+namespace V1_2 {
 namespace implementation {
 
 using ::android::hardware::power::V1_0::Feature;
 using ::android::hardware::power::V1_0::PowerHint;
-using ::android::hardware::power::V1_1::IPower;
+using ::android::hardware::power::V1.2::IPower;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::InteractionHandler;
@@ -47,7 +47,7 @@ struct Power : public IPower {
     Return<void> setFeature(Feature feature, bool activate) override;
     Return<void> getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb) override;
 
-    // Methods from ::android::hardware::power::V1_1::IPower follow.
+    // Methods from ::android::hardware::power::V1.2::IPower follow.
     Return<void> getSubsystemLowPowerStats(getSubsystemLowPowerStats_cb _hidl_cb) override;
     Return<void> powerHintAsync(PowerHint hint, int32_t data) override;
 
@@ -59,9 +59,9 @@ struct Power : public IPower {
 };
 
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1.2
 }  // namespace power
 }  // namespace hardware
 }  // namespace android
 
-#endif  // ANDROID_HARDWARE_POWER_V1_1_POWER_H
+#endif  // ANDROID_HARDWARE_POWER_V1_2_POWER_H

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.power@1.1-service.mata"
+#define LOG_TAG "android.hardware.power@1.2-service.mata"
 
 #include <android/log.h>
 #include <android-base/file.h>
@@ -33,14 +33,14 @@ extern struct stat_pair rpm_stat_map[];
 namespace android {
 namespace hardware {
 namespace power {
-namespace V1_1 {
+namespace V1_2 {
 namespace implementation {
 
 using ::android::hardware::power::V1_0::Feature;
 using ::android::hardware::power::V1_0::PowerHint;
 using ::android::hardware::power::V1_0::PowerStatePlatformSleepState;
 using ::android::hardware::power::V1_0::Status;
-using ::android::hardware::power::V1_1::PowerStateSubsystem;
+using ::android::hardware::power::V1_2::PowerStateSubsystem;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
@@ -163,7 +163,7 @@ static int get_wlan_low_power_stats(struct PowerStateSubsystem &subsystem) {
     return 0;
 }
 
-// Methods from ::android::hardware::power::V1_1::IPower follow.
+// Methods from ::android::hardware::power::V1_2::IPower follow.
 Return<void> Power::getSubsystemLowPowerStats(getSubsystemLowPowerStats_cb _hidl_cb) {
 
     hidl_vec<PowerStateSubsystem> subsystems;
@@ -203,7 +203,7 @@ Return<void> Power::powerHintAsync(PowerHint hint, int32_t data) {
 }
 
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1_2
 }  // namespace power
 }  // namespace hardware
 }  // namespace android
