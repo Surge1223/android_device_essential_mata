@@ -86,7 +86,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore_desede=true \
     ro.zram.mark_idle_delay_mins=60 \
     ro.zram.first_wb_delay_mins=180 \
-    ro.zram.periodic_wb_delay_hours=24 \
+    ro.zram.periodic_wb_delay_hours=24
+
+PRODUCT_PRODUCT_PROPERTIES +=
+    ro.build.characteristics=nosdcard \
+    ro.com.google.acsa=true \
+    ro.com.google.clientidbase=android-essential \
+    ro.opa.eligible_device=true \
+    ro.setupwizard.rotation_locked=true \
+    setupwizard.theme=glif_v3_light \
+    ro.com.google.gmsversion=10_201908
 
 ENABLE_VENDOR_RIL_SERVICE := true
 
