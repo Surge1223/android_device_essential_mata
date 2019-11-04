@@ -15,8 +15,6 @@ allow init boot_block_device:lnk_file relabelto;
 allow init persist_block_device:lnk_file relabelto;
 
 
-allow init init_exec:file relabelfrom;
-allow init toolbox_exec:file relabelfrom;
 allow init rootfs:lnk_file create_file_perms;
 
 dontaudit init kernel:security setcheckreqprot;

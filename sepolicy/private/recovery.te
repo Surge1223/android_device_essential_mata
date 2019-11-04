@@ -2,7 +2,6 @@ recovery_only(`
 allow recovery apk_data_file:dir r_dir_perms;
 allow recovery apk_private_data_file:dir r_dir_perms;
 allow recovery asec_image_file:dir r_dir_perms;
-allow recovery default_prop:property_service set;
 allow recovery device:dir create_dir_perms;
 allow recovery device:file rx_file_perms;
 allow recovery device:lnk_file create_file_perms;
@@ -10,8 +9,6 @@ allow recovery hbtp_device:chr_file w_file_perms;
 allow recovery hwservicemanager_prop:property_service set;
 allow recovery init:file r_file_perms;
 allow recovery init:key write;
-allow recovery keystore_data_file:dir r_dir_perms;
-allow recovery keystore_data_file:file r_file_perms;
 allow recovery self:capability net_admin;
 allow recovery self:key search;
 allow recovery self:netlink_kobject_uevent_socket { create read setopt };
