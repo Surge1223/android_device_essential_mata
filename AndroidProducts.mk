@@ -15,5 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_mata.mk \
-    $(LOCAL_DIR)/du.mk
+    $(LOCAL_DIR)/aosp_mata.mk
